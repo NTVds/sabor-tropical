@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor Tropical - Cardápio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2e003e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #ffeb3b;
+        }
+        label, select, textarea, input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #ffeb3b;
+            color: #2e003e;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        textarea {
+            height: 60px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍧 Sabor Tropical</h1>
+        <form id="pedidoForm">
+            <div class="section">
+                <h2>Escolha o Tamanho</h2>
+                <select name="tamanho">
+                    <option value="250ml - R$9,00">250ml - R$9,00</option>
+                    <option value="350ml - R$13,00">350ml - R$13,00</option>
+                    <option value="500ml - R$18,00">500ml - R$18,00</option>
+                    <option value="750ml - R$24,00">750ml - R$24,00</option>
+                    <option value="1000ml - R$30,00">1000ml - R$30,00</option>
+                </select>
+            </div>
+            <div class="section">
+                <h2>Cremes (2)</h2>
+                <textarea name="cremes" placeholder="Ex: Açaí, Creme de Ninho"></textarea>
+            </div>
+            <div class="section">
+                <h2>Acompanhamentos (5)</h2>
+                <textarea name="acompanhamentos" placeholder="Ex: Granola, Paçoca, Marshmallow..."></textarea>
+            </div>
+            <div class="section">
+                <h2>Coberturas (2)</h2>
+                <textarea name="coberturas" placeholder="Ex: Leite Condensado, Calda de Morango..."></textarea>
+            </div>
+            <div class="section">
+                <h2>Frutas (3)</h2>
+                <textarea name="frutas" placeholder="Ex: Banana, Abacaxi, Uva..."></textarea>
+            </div>
+            <div class="section">
+                <h2>Especial (1)</h2>
+                <textarea name="especial" placeholder="Ex: Doce de Leite"></textarea>
+            </div>
+            <div class="section">
+                <h2>Adicionais Extra</h2>
+                <textarea name="extras" placeholder="Ex: Nutella, Morango, Ovomaltine..."></textarea>
+            </div>
+            <div class="section">
+                <h2>Endereço para Entrega</h2>
+                <textarea name="endereco" placeholder="Rua, Número, Bairro..."></textarea>
+            </div>
+            <button type="button" onclick="enviarPedido()">📲 Enviar Pedido</button>
+        </form>
+    </div>
+
+    <script>
+        function enviarPedido() {
+            const form = document.getElementById('pedidoForm');
+            const data = new FormData(form);
+            let msg = '🍧 *Pedido - Sabor Tropical*\n\n';
+
+            for (const [key, value] of data.entries()) {
+                msg += `*${key.charAt(0).toUpperCase() + key.slice(1)}:* ${value}\n`;
+            }
+
+            const fMsg = encodeURIComponent(msg);
+            const zap = '558486088604';
+            window.open(`https://wa.me/${zap}?text=${fMsg}`, '_blank');
+        }
+    </script>
+</body>
+</html>
